@@ -4,6 +4,7 @@ var generatePassword;
 var PWL;
 var Lower;
 var Upper;
+var NumberB;
 
 // Write password to the #password input
 function writePassword() {
@@ -34,11 +35,9 @@ var UpperBoolean = function () {
   Upper = window.prompt("Would you like to use uppercase letters?");
 }
 
-// var UpperBoolean = function () {
-//   var Upper = window.prompt("Would you like to use numbers?");
- 
-//   console.log(Upper)
-// }
+var NumberBoolean = function () {
+  NumberB = window.prompt("Would you like to use numbers?");
+}
 
 // var SpecialCharacters = function () {
 //   var Special = window.prompt("Would you like to use special characters?");
@@ -50,6 +49,8 @@ var UpperBoolean = function () {
 PasswordLength();
 LowerBoolean();
 UpperBoolean();
+NumberBoolean();
+
 var lowerArray = [];
 var UpperArray = [];
 // var lowerPasswordLength = Math.floor(PWL * 0.5);
@@ -68,29 +69,64 @@ const UpperCaseArray = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N",
 
 
 if (Lower=="y") {
-for (var i = 0; i < PWL; i++){
+  //creates a random array from lowercase lettesrs PWL long 
+  for (var i = 0; i < PWL; i++){
     const randomLower = lowerCaseArray[Math.floor(Math.random() * lowerCaseArray.length)];
     lowerArray[i] = randomLower;
     }
   }
 
-console.log("lowerArray " + lowerArray);
+if (Upper == "y" && Lower == "y"){
+  //generates variable half password length
+  var TwoSelect = Math.floor(PWL*0.5)
+  //removes half of lowerArray
+  var removed = lowerArray.splice(0,TwoSelect)
+  
+  //creates upper array TwoSelect long (half of password)
+  for (var i = 0; i < (TwoSelect); i++){
+  const randomUpper = UpperCaseArray[Math.floor(Math.random() * UpperCaseArray.length)];
+  UpperArray[i] = randomUpper;
+  }
+  //concats lowerArray and uppperArray
+  var ConcatArray = lowerArray.concat(UpperArray);
+  console.log("UpperArray " + ConcatArray);
+} else if (Upper=="y") {
+  //fill array with all Upper if 
+  for (var i = 0; i < PWL; i++){
+    const randomUpper = UpperCaseArray[Math.floor(Math.random() * UpperCaseArray.length)];
+    UpperArray[i] = randomUpper;
+    }
+    console.log(UpperArray);
+}
+
+// if (Upper == "y" && Lower == "y" && NumberB == "y") {
+
+
+// }
+
+
+
+
+
+console.log(lowerArray);
+
+
 
 //this is where i stopped.  pretty much working if you select one or the other, or concats if both. 
 
 //issue is, if i say no to the above, i need to create a password PWL
-if (Upper=="y"){
-  var TwoSelect = Math.floor(PWL*0.5)
-  var removed = lowerArray.splice(0,TwoSelect)
-  for (var i = 0; i < (TwoSelect); i++){
-  const randomLower = UpperCaseArray[Math.floor(Math.random() * UpperCaseArray.length)];
-  UpperArray[i] = randomLower;
-  }
-  console.log("UpperArray " + UpperArray);
+// if (Upper=="y"){
+//   var TwoSelect = Math.floor(PWL*0.5)
+//   var removed = lowerArray.splice(0,TwoSelect)
+//   for (var i = 0; i < (TwoSelect); i++){
+//   const randomLower = UpperCaseArray[Math.floor(Math.random() * UpperCaseArray.length)];
+//   UpperArray[i] = randomLower;
+//   }
+//   console.log("UpperArray " + UpperArray);
 
-  var ConcatArray = lowerArray.concat(UpperArray);
-console.log("Concat array " + ConcatArray);
-  }
+//   var ConcatArray = lowerArray.concat(UpperArray);
+// console.log("Concat array " + ConcatArray);
+//   }
 
 
 
