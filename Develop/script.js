@@ -52,6 +52,14 @@ var NumberBoolean = function () {
 // }
 
 
+//creates a random array from lowercase lettesrs PWL long 
+// for (var i = 0; i < PWL; i++){
+//   const randomSpecial = SpecialArray[Math.floor(Math.random() * SpecialArray.length)];
+//   SpecArray[i] = randomSpe;
+//   }
+// return lowerArray.join('');
+
+
 PasswordLength();
 LowerBoolean();
 UpperBoolean();
@@ -60,25 +68,50 @@ NumberBoolean();
 var lowerArray = [];
 var UpperArray = [];
 var NumbArray = [];
+var SpecArray = [];
 
 const lowerCaseArray = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
 const UpperCaseArray = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 const NumbersArray = [0,1,2,3,4,5,6,7,8,9];
+const SpecialArray = ["!","@","#","$","%","^","&","*"]
 
 function generatePassword () {
-if (Lower=="y") {
+if (Lower == "y" && Upper == "n" && NumberB == "n") {
   //creates a random array from lowercase lettesrs PWL long 
   for (var i = 0; i < PWL; i++){
     const randomLower = lowerCaseArray[Math.floor(Math.random() * lowerCaseArray.length)];
     lowerArray[i] = randomLower;
     }
+  return lowerArray.join('');
+  }
+if (Lower == "n" && Upper == "y" && NumberB == "n") {
+  //creates a random array from lowercase lettesrs PWL long 
+  for (var i = 0; i < PWL; i++){
+    const randomUpper = UpperCaseArray[Math.floor(Math.random() * UpperCaseArray.length)];
+    UpperArray[i] = randomUpper;
+    }
+  return UpperArray.join('');
+  }
+if (Lower == "n" && Upper == "n" && NumberB == "y") {
+  //creates a random array from lowercase lettesrs PWL long 
+  for (var i = 0; i < PWL; i++){
+    const randomNumber = NumbersArray[Math.floor(Math.random() * NumbersArray.length)];
+    NumbArray[i] = randomNumber;
+    }
+  return NumbArray.join('');
   }
 
-if (Upper == "y" && Lower == "y"){
+
+if (Upper == "y" && Lower == "y" && NumberB == "n"){
   //generates variable half password length
   var TwoSelect = Math.floor(PWL*0.5)
-  //removes half of lowerArray
-  var removed = lowerArray.splice(0,TwoSelect)
+  //creates a random array from lowercase lettesrs PWL long 
+  for (var i = 0; i < PWL; i++){
+    const randomLower = lowerCaseArray[Math.floor(Math.random() * lowerCaseArray.length)];
+    lowerArray[i] = randomLower;
+    }
+   //removes half of lowerArray
+   var removed = lowerArray.splice(0,TwoSelect)
   
   //creates upper array TwoSelect long (half of password)
   for (var i = 0; i < (TwoSelect); i++){
@@ -87,53 +120,18 @@ if (Upper == "y" && Lower == "y"){
   }
   //concats lowerArray and uppperArray
   var ConcatArray1 = lowerArray.concat(UpperArray);
-  console.log("UpperArray " + ConcatArray1);
-} else if (Upper=="y") {
-  //fill array with all Upper 
-  for (var i = 0; i < PWL; i++){
+  return ConcatArray1.join('')
+
+} 
+
+if (Lower == "n" && Upper == "y" && NumberB == "y"){
+  //generates variable half password length
+  var TwoSelect = Math.floor(PWL*0.5)
+  //create upperArray
+    for (var i = 0; i < PWL; i++){
     const randomUpper = UpperCaseArray[Math.floor(Math.random() * UpperCaseArray.length)];
     UpperArray[i] = randomUpper;
     }
-    console.log(UpperArray);
-}
-
-if (Upper == "y" && Lower == "y" && NumberB == "y"){
-  //generates variable one-third password length
-  var ThreeSelect = Math.floor(PWL*0.3333333333333333)
-  //removes the last one-third of ConcatArray1(contain upper and lower arrays)
-  var removed = ConcatArray1.splice(0,ThreeSelect)
-  
-  //creates number array ThreeSelect long (one-third of password length)
-  for (var i = 0; i < (ThreeSelect); i++){
-  const randomNumber = NumbersArray[Math.floor(Math.random() * NumbersArray.length)];
-  NumbArray[i] = randomNumber;
-  }
-  //concats ConcatArray1 and NumbArray
-  var ConcatArray2 = ConcatArray1.concat(NumbArray);
-  console.log("ConcatArray2 " + ConcatArray2);
-
-
-} else if (NumberB == "y" && Lower == "y"){
-  //generates variable half password length
-  var TwoSelect = Math.floor(PWL*0.5)
-  //removes half of lowerArray
-  var removed = lowerArray.splice(0,TwoSelect)
-  
-  //creates number array TwoSelect long (half of password)
-  for (var i = 0; i < (TwoSelect); i++){
-   randomNumber = NumbersArray[Math.floor(Math.random() * NumbersArray.length)];
-  NumbArray[i] = randomNumber;
-  }
-  //concats lowerArray and NumberArray
-  var ConcatArray3 = lowerArray.concat(NumbArray);
-
-console.log(ConcatArray3)
-
-
-  console.log(ConcatArray3);
-} else if (NumberB == "y" && Upper == "y"){
-  //generates variable half password length
-  var TwoSelect = Math.floor(PWL*0.5)
   //removes half of UpperArray
   var removed = UpperArray.splice(0,TwoSelect)
   
@@ -145,21 +143,117 @@ console.log(ConcatArray3)
   //concats UpperArray and NumberArray
   var ConcatArray4 = UpperArray.concat(NumbArray);
 
-console.log(ConcatArray4)
+  return ConcatArray4.join('');
 
-} else if (NumberB=="y") {
-  //fill array with all Numbers 
+} 
+
+else if (Lower == "y" && Upper == "n" && NumberB == "y"){
+  //generates variable half password length
+  var TwoSelect = Math.floor(PWL*0.5)
+  //creates a random array from lowercase lettesrs PWL long 
   for (var i = 0; i < PWL; i++){
-    const randomNumber = NumbersArray[Math.floor(Math.random() * NumbersArray.length)];
-    NumbArray[i] = randomNumber;
+      const randomLower = lowerCaseArray[Math.floor(Math.random() * lowerCaseArray.length)];
+      lowerArray[i] = randomLower;
+      }
+  //removes half of lowerArray
+  var removed = lowerArray.splice(0,TwoSelect)
+  
+  //creates number array TwoSelect long (half of password)
+  for (var i = 0; i < (TwoSelect); i++){
+   randomNumber = NumbersArray[Math.floor(Math.random() * NumbersArray.length)];
+  NumbArray[i] = randomNumber;
+  }
+  //concats lowerArray and NumberArray
+  var ConcatArray3 = lowerArray.concat(NumbArray);
+
+  return ConcatArray3.join('');
+} 
+
+if (Upper == "y" && Lower == "y" && NumberB == "y"){
+  //generates variable one-third password length
+  var ThreeSelect = Math.floor(PWL*0.3333333333333333)
+    //generates variable half password length
+    var TwoSelect = Math.floor(PWL*0.5)
+    //creates a random array from lowercase lettesrs PWL long 
+    for (var i = 0; i < PWL; i++){
+      const randomLower = lowerCaseArray[Math.floor(Math.random() * lowerCaseArray.length)];
+      lowerArray[i] = randomLower;
+      }
+     //removes half of lowerArray
+     var removed = lowerArray.splice(0,TwoSelect)
+    
+    //creates upper array TwoSelect long (half of password)
+    for (var i = 0; i < (TwoSelect); i++){
+    const randomUpper = UpperCaseArray[Math.floor(Math.random() * UpperCaseArray.length)];
+    UpperArray[i] = randomUpper;
     }
-    console.log("Number Array: " + NumbArray);
-    return NumbArray;
+    //concats lowerArray and uppperArray
+    var ConcatArray1 = lowerArray.concat(UpperArray);
+  //removes the last one-third of ConcatArray1(contain upper and lower arrays)
+  var removed = ConcatArray1.splice(0,ThreeSelect)
+  
+  //creates number array ThreeSelect long (one-third of password length)
+  for (var i = 0; i < (ThreeSelect); i++){
+  const randomNumber = NumbersArray[Math.floor(Math.random() * NumbersArray.length)];
+  NumbArray[i] = randomNumber;
+  }
+  //concats ConcatArray1 and NumbArray
+  var ConcatArray2 = ConcatArray1.concat(NumbArray);
+  return ConcatArray2.join('');
+
+}
 }
 
 
+// } else if (NumberB == "y" && Lower == "y"){
+//   //generates variable half password length
+//   var TwoSelect = Math.floor(PWL*0.5)
+//   //removes half of lowerArray
+//   var removed = lowerArray.splice(0,TwoSelect)
+  
+//   //creates number array TwoSelect long (half of password)
+//   for (var i = 0; i < (TwoSelect); i++){
+//    randomNumber = NumbersArray[Math.floor(Math.random() * NumbersArray.length)];
+//   NumbArray[i] = randomNumber;
+//   }
+//   //concats lowerArray and NumberArray
+//   var ConcatArray3 = lowerArray.concat(NumbArray);
 
-}
+// console.log(ConcatArray3)
+
+
+//   console.log(ConcatArray3);
+// } else if (NumberB == "y" && Upper == "y"){
+//   //generates variable half password length
+//   var TwoSelect = Math.floor(PWL*0.5)
+//   //removes half of UpperArray
+//   var removed = UpperArray.splice(0,TwoSelect)
+  
+//   //creates number array TwoSelect long (half of password)
+//   for (var i = 0; i < (TwoSelect); i++){
+//    randomNumber = NumbersArray[Math.floor(Math.random() * NumbersArray.length)];
+//   NumbArray[i] = randomNumber;
+//   }
+//   //concats UpperArray and NumberArray
+//   var ConcatArray4 = UpperArray.concat(NumbArray);
+
+// console.log(ConcatArray4)
+
+// } 
+
+// else if (NumberB=="y") {
+//   //fill array with all Numbers 
+//   for (var i = 0; i < PWL; i++){
+//     const randomNumber = NumbersArray[Math.floor(Math.random() * NumbersArray.length)];
+//     NumbArray[i] = randomNumber;
+//     }
+//     console.log("Number Array: " + NumbArray);
+//     return NumbArray;
+// }
+
+
+
+
 
 
 
