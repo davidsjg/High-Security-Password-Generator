@@ -44,12 +44,13 @@ var NumberBoolean = function () {
   NumberB = window.prompt("Would you like to use numbers?");
 }
 
-//ask user if special characters will be used
-// var SpecialCharacters = function () {
-//   var Special = window.prompt("Would you like to use special characters?");
+var Special;
+// ask user if special characters will be used
+var SpecialCharacters = function () {
+  Special = window.prompt("Would you like to use special characters?");
  
-//   console.log(Special)
-// }
+  console.log(Special)
+}
 
 
 //creates a random array from lowercase lettesrs PWL long 
@@ -64,6 +65,7 @@ PasswordLength();
 LowerBoolean();
 UpperBoolean();
 NumberBoolean();
+SpecialCharacters();
 
 var lowerArray = [];
 var UpperArray = [];
@@ -82,6 +84,9 @@ if (Lower == "y" && Upper == "n" && NumberB == "n") {
     const randomLower = lowerCaseArray[Math.floor(Math.random() * lowerCaseArray.length)];
     lowerArray[i] = randomLower;
     }
+    if (Special == "y") {
+      lowerArray.splice(0, 1, "$")
+    }
   return lowerArray.join('');
   }
 if (Lower == "n" && Upper == "y" && NumberB == "n") {
@@ -90,6 +95,9 @@ if (Lower == "n" && Upper == "y" && NumberB == "n") {
     const randomUpper = UpperCaseArray[Math.floor(Math.random() * UpperCaseArray.length)];
     UpperArray[i] = randomUpper;
     }
+    if (Special == "y") {
+      UpperArray.splice(0, 1, "$")
+    }
   return UpperArray.join('');
   }
 if (Lower == "n" && Upper == "n" && NumberB == "y") {
@@ -97,6 +105,9 @@ if (Lower == "n" && Upper == "n" && NumberB == "y") {
   for (var i = 0; i < PWL; i++){
     const randomNumber = NumbersArray[Math.floor(Math.random() * NumbersArray.length)];
     NumbArray[i] = randomNumber;
+    }
+    if (Special == "y") {
+      NumbArray.splice(0, 1, "$")
     }
   return NumbArray.join('');
   }
@@ -120,6 +131,9 @@ if (Upper == "y" && Lower == "y" && NumberB == "n"){
   }
   //concats lowerArray and uppperArray
   var ConcatArray1 = lowerArray.concat(UpperArray);
+  if (Special == "y") {
+    ConcatArray1.splice(0, 1, "$")
+  }
   return ConcatArray1.join('')
 
 } 
@@ -142,7 +156,9 @@ if (Lower == "n" && Upper == "y" && NumberB == "y"){
   }
   //concats UpperArray and NumberArray
   var ConcatArray4 = UpperArray.concat(NumbArray);
-
+  if (Special == "y") {
+    ConcatArray4.splice(0, 1, "$")
+  }
   return ConcatArray4.join('');
 
 } 
@@ -166,6 +182,9 @@ else if (Lower == "y" && Upper == "n" && NumberB == "y"){
   //concats lowerArray and NumberArray
   var ConcatArray3 = lowerArray.concat(NumbArray);
 
+  if (Special == "y") {
+    ConcatArray3.splice(0, 1, "$")
+  }
   return ConcatArray3.join('');
 } 
 
@@ -199,6 +218,9 @@ if (Upper == "y" && Lower == "y" && NumberB == "y"){
   }
   //concats ConcatArray1 and NumbArray
   var ConcatArray2 = ConcatArray1.concat(NumbArray);
+  if (Special == "y") {
+    ConcatArray2.splice(0, 1, "$")
+  }
   return ConcatArray2.join('');
 
 }
